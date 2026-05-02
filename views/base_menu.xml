@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="iti_root_menu" name="ITI"/>
+    <menuitem id="iti_data_menu" name="Date" parent="iti_root_menu"/>
+</odoo>
