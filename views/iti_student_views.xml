@@ -1,9 +1,78 @@
 <odoo>
+    <!--    action-->
     <record id="iti_student_action" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="res_model">iti.student</field>
     </record>
 
+    <!--    tree view-->
+    <record id="iti_srudent_tree_view" model="ir.ui.view">
+        <field name="name">Student Tree View</field>
+        <field name="model">iti.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="info"/>
+                <field name="gender"/>
+                <field name="track_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--    form view-->
+    <record id="iti_srudent_form_view" model="ir.ui.view">
+        <field name="name">Student Form View</field>
+        <field name="model">iti.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="levels" widget="statusbar" options="{'clickable': '1'}"/>
+                    <button name="action_confirm" type="object" string="Confirm"/>
+                    <button name="create_level_logs" type="object" string="Create Level Logs"/>
+                </header>
+                <sheet>
+                    <notebook>
+                        <page string="Page1">
+                            <group string="Personal Information">
+                                <field name="name"/>
+                                <field name="roll_id"/>
+                                <field name="age"/>
+                                <field name="graduate_age"/>
+                                <field name="info"/>
+                                <field name="gender"/>
+                                <field name="is_accepted"/>
+                                <field name="birth_date"/>
+                                <field name="image"/>
+                            </group>
+                        </page>
+                        <page string="page2">
+                            <group string="Private Information">
+                                <field name="is_working"/>
+                                <field name="salary" invisible="not is_working"/>
+                                <field name="cv"/>
+                            </group>
+                        </page>
+                        <page string="Track Information">
+                            <group>
+                                <field name="track_id" domain="[('is_opened','=',True)]"/>
+                                <field name="track_capacity"/>
+                            </group>
+                        </page>
+                        <page string="Level Logs">
+                            <field name="level_log_ids">
+                                <tree>
+                                    <field name="description"/>
+                                    <field name="create_date"/>
+                                    <field name="create_uid"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <menuitem id="iti_student_menu" name="Students" parent="iti_data_menu"
-              action="iti_student_action"/>
+              action="iti_student_action" sequence="2"/>
 </odoo>
